@@ -1,0 +1,25 @@
+body{
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+}
+h1{
+    color: coral;
+}
+
+label{
+    text-align:start;
+    margin:5px;
+    color: brown;
+    
+}
+input{
+    margin:5px;
+}
+
+h4,#s1,#cancel,#d1,#close{
+    background-color:bisque;
+    border-radius:3px;
+    border-style: none;
+    color:rgb(65, 4, 4);
+    box-shadow: inset;
+}

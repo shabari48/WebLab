@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My form</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <form id="form" onsubmit="return validateForm()">
+        <h1>Contact Me for Projects</h1>
+
+        <fieldset>
+          <legend>Personal Details</legend>
+          <div class="input-control">
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name" required />
+            <div class="error" id="nameError"></div>
+          </div>
+          <div class="input-control">
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" required />
+            <div class="error" id="emailError"></div>
+          </div>
+          <div class="input-control">
+            <label for="phone">Phone </label>
+            <input type="tel" name="phone" id="phone" pattern="[0-9]{10}" required />
+            <div class="error" id="phoneError"></div>
+          </div>
+          <div class="gender">
+            <label for="gender">Gender</label>
+            <input type="radio" name="gender"  value="male" required id="male"/>Male
+            <input type="radio" name="gender" value="female" id="female" required/>Female
+            <div class="error" id="genderError"></div>
+          </div>
+
+          <div class="country">
+            <label for="country">Country</label>
+            <select name="country" id="country" required>
+              <option value="">Select Country</option>
+              <option value="India">India</option>
+              <option value="USA">USA</option>
+              <option value="China">China</option>
+              <option value="Australia">Australia</option>
+              <option value="Canada">Canada</option>
+              <option value="UK">UK</option>
+            </select>
+            <div class="error" id="countryError"></div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Service Details</legend>
+          <div class="service">
+            <label for="Service">Service Needed <br /></label>
+            <input type="checkbox"  name="service[]" value="web design" id="web"/>Website Development<br />
+            <input type="checkbox"  name="service[]"  value="app design" id="app"/>Mobile Application Development <br />
+            <input type="checkbox"  name="service[]" value="brand design" id="brand" />Brand Designing <br />
+            <input type="checkbox"  name="custom service"  id="custom_service"  placeholder="Custom Service" />Others<br />
+          </div>
+
+          <label for="date-of-complete">Needed within</label>
+          <input type="date" name="date" id="date-of-complete" /> <br />
+
+          <label for="file-select"
+            >Upload Project Requirement Specifications</label
+          >
+          <input type="file" name="file" id="file-select" />
+        </fieldset>
+
+        <div class="msg">
+          <label for="msg-area">Message (optional)</label>
+          <textarea name="msg" id="msg-area" cols="30" rows="10"></textarea>
+        </div>
+
+        <button type="submit">Submit</button>
+        <button type="reset">Reset</button>
+      </form>
+    </div>
+
+    <script>
+      function validateForm() {
+        resetErrors();
+
+        var nameInput = document.getElementById("name");
+        if (!nameInput.value.trim()) {
+          showError("nameError", "Name is required.");
+          return false;
+        }
+
+        var emailInput = document.getElementById("email");
+        if (!validateEmail(emailInput.value)) {
+          showError("emailError", "Please enter a valid email address.");
+          return false;
+        }
+
+        var phoneInput = document.getElementById("phone");
+        if (!validatePhone(phoneInput.value)) {
+          showError(
+            "phoneError",
+            "Please enter a valid 10-digit phone number."
+          );
+          return false;
+        }
+
+        var genderInputs = document.getElementsByName("gender");
+        var genderChecked = false;
+        for (var i = 0; i < genderInputs.length; i++) {
+          if (genderInputs[i].checked) {
+            genderChecked = true;
+            break;
+          }
+        }
+        if (!genderChecked) {
+          showError("genderError", "Please select a gender.");
+          return false;
+        }
+
+        var countryInput = document.getElementById("country");
+        if (!countryInput.value) {
+          showError("countryError", "Please select a country.");
+          return false;
+        }
+
+        alert("Form submitted successfully!");
+        return true;
+      }
+
+      function resetErrors() {
+        var errorElements = document.querySelectorAll(".error");
+        errorElements.forEach(function (element) {
+          element.textContent = "";
+        });
+      }
+
+      function showError(id, message) {
+        var errorElement = document.getElementById(id);
+        errorElement.textContent = message;
+      }
+
+      function validateEmail(email) {
+        var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+      }
+
+      function validatePhone(phone) {
+        var phoneRegex = /^[0-9]{10}$/;
+        return phoneRegex.test(phone);
+      }
+    </script>
+  </body>
+</html>
