@@ -1,0 +1,35 @@
+
+  
+show schemas; //to list all dbs
+create schema demodb;  // create db
+use demodb; //use that db
+
+CREATE TABLE studreg (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL,
+  phone VARCHAR(20) NOT NULL,
+  gender ENUM('male', 'female', 'other') NOT NULL,
+  dob DATE NOT NULL,
+  courses VARCHAR(255) NOT NULL,
+  duration ENUM('2-weeks', '4-weeks') NOT NULL
+);
+
+CREATE TABLE student(
+   s_id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  webmark int,
+  aimark int,
+  compilermark int
+  );
+  
+  
+  insert into student(name,webmark,aimark,compilermark) values('Shabari',57,53,57);
+  insert into student(name,webmark,aimark,compilermark) values('Shaye',57,58,55);
+  
+
+
+  
+  
+  
+  

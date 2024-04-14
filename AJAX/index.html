@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Cricket Score Updater</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+      function updateScore() {
+        // Read the score from the file
+        $.get("score.txt", function (data) {
+          // Parse the score and update the HTML
+          var score = data.split("\n");
+          $("#team1").text(score[0]);
+          $("#vs").text(score[1]);
+          $("#team2").text(score[2]);
+        });
+      }
+
+      $(document).ready(function () {
+        // Update the score initially
+        updateScore();
+
+        // Update the score every 7 seconds
+        setInterval(updateScore, 7000);
+      });
+    </script>
+  </head>
+  <body>
+    <h1 id="team1"></h1>
+    <h2 id="vs">vs</h2>
+    <h1 id="team2"></h1>
+  </body>
+</html>
